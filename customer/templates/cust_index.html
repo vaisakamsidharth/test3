@@ -1,0 +1,58 @@
+{%extends 'cust_base.html'%}
+{%block body_block%}
+
+<h1>welcome {{request.user}}</h1>
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <form  action="get" style="margin: 0">
+            {{filter.form.as_p}}
+            <input type="text" value="submit">
+
+        </form>
+    </div>
+
+
+</div>
+
+<div class="row mt-3">
+    {%if messages%}
+    <div class="row mt-3">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%for message in messages%}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>
+            {%endfor%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+    {%endif%}
+    {%for book in filter.qs%}
+    <div class="col-3">
+        <div class="card" style="width: 18rem;">
+
+            {%if book.image%}
+            <img src="{{book.image.url}}" class="card-img-top" alt="" height="250px">
+            {%endif%}
+
+            <div class="card-body">
+                <h5 class="card-title">{{book.book_name}}</h5>
+                <p class="card-text">{{book.author}}</p>
+                <p class="card-text">{{book.price}}</p>
+
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="{%url  'addtocart' book.id %}" class="btn btn-primary">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+
+    {%endfor%}
+
+</div>
+{%endblock%}

@@ -1,0 +1,12 @@
+{%extends 'base.html' %}
+{%block body_block%}
+
+<form action="" method="post">
+
+    {%csrf_token%}
+    are you sure to delete {{object}}
+    <input type="submit" value="submit">
+
+</form>
+
+{%endblock%}

@@ -1,0 +1,34 @@
+
+
+{%extends 'base.html' %}
+{%block body_block%}
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table">
+                <tr>
+                    <th>id</th>
+                    <th>Book_name</th>
+                    <th>author</th>
+                    <th>price</th>
+                    <th>copies</th>
+                </tr>
+                {%for book in books%}
+                <tr>
+                    <td>{{book.id}}</td>
+                    <td>{{book.book_name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.copies}}</td>
+                    <td><a href="{%url 'bookdetails' book.id%}" class="btn btn-success">Detail</a></td>
+                    <td><a href="{%url 'bookedit' book.id%}" class="btn btn-warning">Edit</a></td>
+                    <td><a href="{%url 'deletebook' book.id%}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+{%endblock%}
